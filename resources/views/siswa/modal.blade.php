@@ -5,7 +5,7 @@
 
         <!-- Modal Header -->
         <div class="modal-header">
-            <h4 class="modal-title">Tambah Siswa</h4>
+            <h4 class="modal-title"></h4>
             <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
 
@@ -16,19 +16,19 @@
                 @csrf
                 <div class="row">
                     <div class="form-group col-6">
-                        <input type="text" required class="form-control" placeholder="Nomor Induk Siswa" name="nis">
+                        <input type="text" autocomplete="off" class="form-control" placeholder="Nomor Induk Siswa" name="nis">
                     </div>
                     <div class="form-group col-6">
-                        <input type="text" required class="form-control" placeholder="Nama Siswa" name="nama">
+                        <input type="text" autocomplete="off" class="form-control" placeholder="Nama Siswa" name="nama">
                     </div>
                     <div class="form-group col-6">
-                        <input type="text" required name="tempat_lahir" class="form-control" placeholder="Tempat Lahir">
+                        <input type="text" autocomplete="off" name="tempat_lahir" class="form-control" placeholder="Tempat Lahir">
                     </div>
                     <div class="form-group col-6">
-                        <input type="date" required class="form-control" placeholder="Tanggal Lahir" name="tgl_lahir">
+                        <input type="date" autocomplete="off" class="form-control" placeholder="Tanggal Lahir" name="tgl_lahir">
                     </div>
                     <div class="form-group col-4">
-                            <select name="agama" required class="form-control" id="agama">
+                            <select name="agama" class="form-control" id="agama">
                                 <option value="">--- Agama ---</option>
                                 <option value="Islam">Islam</option>
                                 <option value="Kristen Protestan">Kristen Protestan</option>
@@ -39,7 +39,7 @@
                             </select>
                         </div>
                         <div class="form-group col-4">
-                            <select name="gol_darah" required class="form-control" id="gol_darah">
+                            <select name="gol_darah" class="form-control" id="gol_darah">
                                 <option value="">--- Gol Darah ---</option>
                                 <option value="A">A</option>
                                 <option value="B">B</option>
@@ -48,34 +48,34 @@
                             </select>
                         </div>
                         <div class="form-group col-4">
-                            <select name="jenis_kelamin" required class="form-control" id="jenis_kelamin">
+                            <select name="jenis_kelamin" class="form-control" id="jenis_kelamin">
                                 <option value="">--- Jenis Kelamin ---</option>
                                 <option value="Laki-Laki">Laki-Laki</option>
                                 <option value="Perempuan">Perempuan</option>
                             </select>
                         </div>
                     <div class="form-group col-3">
-                        <select name="provinsi" required class="form-control" id="provinsi">
+                        <select name="provinsi" class="form-control" id="provinsi">
                             <option value="">--- Pilih Provinsi ---</option>
                         </select>
                     </div>
                     <div class="form-group col-3">
-                        <select name="kabupaten" required class="form-control" id="kabupaten">
+                        <select name="kabupaten" class="form-control" id="kabupaten">
                             <option value="">--- Pilih Kabupaten ---</option>
                         </select>
                     </div>
                     <div class="form-group col-3">
-                        <select name="kecamatan" required class="form-control" id="kecamatan">
+                        <select name="kecamatan" class="form-control" id="kecamatan">
                             <option value="">--- Pilih Kecamatan ---</option>
                         </select>
                     </div>
                     <div class="form-group col-3">
-                        <select name="kelurahan" required class="form-control" id="kelurahan">
+                        <select name="kelurahan" class="form-control" id="kelurahan">
                             <option value="">--- Pilih Kelurahan ---</option>
                         </select>
                     </div>
                     <div class="form-group col-12">
-                        <textarea name="alamat" required class="form-control" rows="5" id="alamat" placeholder="Alamat"></textarea>
+                        <textarea name="alamat" class="form-control" rows="5" id="alamat" placeholder="Alamat"></textarea>
                     </div>
 
                 </div>
@@ -83,6 +83,7 @@
 
             <!-- Modal footer -->
             <div class="modal-footer">
+                <button type="button" class="btn btn-prmary" data-dismiss="modal">Batal</button>
                 <button type="submit" id="submit" class="btn btn-danger">Save</button>
             </div>
         </fieldset>

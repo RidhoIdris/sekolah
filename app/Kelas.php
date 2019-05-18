@@ -4,10 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class MasterSiswa extends Model
+class Kelas extends Model
 {
     protected $guarded = [];
-    protected $table = 'master_siswa';
-    protected $primaryKey = 'nis';
+    protected $table = 'kelas';
+    protected $primaryKey = 'kode_kelas';
     public $incrementing = false;
 }

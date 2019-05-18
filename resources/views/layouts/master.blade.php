@@ -28,7 +28,6 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
 
 
-
 </head>
 
 <body>
@@ -183,6 +182,8 @@
 <script src="https://ajax.cloudflare.com/cdn-cgi/scripts/a2bd7673/cloudflare-static/rocket-loader.min.js" data-cf-settings="493393c5abdf333f91f78bd4-|49" defer=""></script></body>
 {{-- validate --}}
 <script src="{{ asset('js/jquery.validate.js')}}"></script>
+{{-- Sweet Alert --}}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 @yield('script')
 
 </html>
