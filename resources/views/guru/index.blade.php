@@ -19,7 +19,7 @@
                                 <table id="guru" class="table table-hover" width="100%">
                                     <thead>
                                         <tr>
-                                            <th>#</th>
+                                            <th width="30px;">#</th>
                                             <th>Nis</th>
                                             <th>Name</th>
                                             <th>Jk</th>

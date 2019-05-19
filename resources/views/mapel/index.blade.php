@@ -7,20 +7,20 @@
                 <div class="col-sm-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Master Jurusan</h4>
+                            <h4>Master Mapel</h4>
                             <div class="card-header-right">
                                 <ul class="list-unstyled card-option">
-                                    <li><button id="tambah" class="btn btn-success btn-sm">Tambah Jurusan</button></li>
+                                    <li><button id="tambah" class="btn btn-success btn-sm">Tambah Mapel</button></li>
                                 </ul>
                             </div>
                         </div>
                         <div class="card-block">
                             <div class="table-responsive">
-                                <table id="jurusan" class="table table-hover" width="100%">
+                                <table id="mapel" class="table table-hover" width="100%">
                                     <thead>
                                         <tr>
                                             <th width="30px;">#</th>
-                                            <th>Nama Jurusan</th>
+                                            <th>Nama Mapel</th>
                                             <th width="15px">Aksi</th>
                                         </tr>
                                     </thead>
@@ -33,18 +33,18 @@
         </div>
     </div>
 </div>
-@include('jurusan.modal');
+@include('mapel.modal');
 @endsection
 @section('script')
 <script type="text/javascript">
 $(document).ready(function() {
-    var getData = $('#jurusan').DataTable({
+    var getData = $('#mapel').DataTable({
         processing: true,
         serverSide: true,
-        ajax: "{{ route('jurusan.show') }}",
+        ajax: "{{ route('mapel.show') }}",
         columns: [
                     { data: 'DT_RowIndex', name: 'DT_RowIndex' },
-                    { data: 'nama_jurusan'},
+                    { data: 'nama_mapel'},
                     { data: 'action', name: 'action', orderable:false, searchable:false },
                 ],
     });
@@ -58,24 +58,24 @@ $(document).ready(function() {
 
     $('#tambah').click(function(){
         $('form :input').val('');
-        $('.modal-header h4').text('Tambah Jurusan');
+        $('.modal-header h4').text('Tambah Mapel');
         $('button[type="submit"]').text('Save');
         $('#modal').modal('show');
     });
 
-    $('#formJurusan').submit(function(e){
+    $('#formMapel').submit(function(e){
         e.preventDefault();
         NProgress.start();
         var id = $('input[name="id"]').val();
-        var nama_jurusan = $('input[name="nama_jurusan"]').val();
+        var nama_mapel = $('input[name="nama_mapel"]').val();
         var button = $('#submit').text();
         var url = '';
         var method = '';
         if(button == 'Save'){
-            url = 'master-jurusan';
+            url = 'master-mapel';
             method = "post";
         }else{
-            url = 'master-jurusan/update/'+id;
+            url = 'master-mapel/update/'+id;
             method = "put";
         }
         $.ajax({
@@ -85,7 +85,7 @@ $(document).ready(function() {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             data : {
-                nama_jurusan: nama_jurusan,
+                nama_mapel: nama_mapel,
             },
             success:function(data){
                 $('#modal').modal('hide');
@@ -121,14 +121,14 @@ $(document).ready(function() {
                 NProgress.start();
                 $.ajax({
                     type : "DELETE",
-                    url  :  'master-jurusan/'+id,
+                    url  :  'master-mapel/'+id,
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     success:function(){
                         Toast.fire({
                             type: 'success',
-                            title: "Jurusan Berhasil Di Hapus",
+                            title: "Mapel Berhasil Di Hapus",
                         });
                         getData.ajax.reload();
                         NProgress.done();
@@ -142,18 +142,18 @@ $(document).ready(function() {
     });
 
     $(document).on('click','#edit',function(){
-        $('.modal-header h4').text('Edit Jurusan');
+        $('.modal-header h4').text('Edit Mapel');
         var id = $(this).attr('data-id');
         $.ajax({
             type : "GET",
-            url  :  'master-jurusan/edit/'+id,
+            url  :  'master-mapel/edit/'+id,
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },success:function(data){
                 $('form :input').val('');
                 $('button[type="submit"]').text('Edit');
                 $('input[name="id"]').val(data.id);
-                $('input[name="nama_jurusan"]').val(data.nama_jurusan);
+                $('input[name="nama_mapel"]').val(data.nama_mapel);
                 $('#modal').modal('show');
             },error:function(data){
                 console.log(data);

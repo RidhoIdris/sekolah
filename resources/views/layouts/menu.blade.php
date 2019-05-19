@@ -34,8 +34,8 @@
                             <span class="pcoded-mtext">Master Guru</span>
                         </a>
                     </li>
-                    <li class="{{ active('mapel') }}">
-                        <a href="menu-rtl.html">
+                    <li class="{{ active('mapel.index') }}">
+                        <a href="{{ route('mapel.index') }}">
                             <span class="pcoded-mtext">Master Mata Pelajaran</span>
                         </a>
                     </li>

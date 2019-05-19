@@ -39,6 +39,13 @@ Route::group(['middleware' => ['auth']], function () {
     Route::put('/master-jurusan/update/{id}', 'JurusanController@update')->name('jurusan.update');
     Route::post('/master-jurusan', 'JurusanController@store')->name('jurusan.store');
     Route::delete('/master-jurusan/{id}', 'JurusanController@delete')->name('jurusan.delete');
+
+    Route::get('/master-mapel', 'MasterMapelController@index')->name('mapel.index');
+    Route::get('/master-mapel/show', 'MasterMapelController@show')->name('mapel.show');
+    Route::get('/master-mapel/edit/{id}', 'MasterMapelController@edit')->name('mapel.edit');
+    Route::put('/master-mapel/update/{id}', 'MasterMapelController@update')->name('mapel.update');
+    Route::post('/master-mapel', 'MasterMapelController@store')->name('mapel.store');
+    Route::delete('/master-mapel/{id}', 'MasterMapelController@delete')->name('mapel.delete');
 });
 
 

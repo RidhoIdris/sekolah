@@ -19,7 +19,7 @@
                                 <table id="kelas" class="table table-hover" width="100%">
                                     <thead>
                                         <tr>
-                                            <th>#</th>
+                                            <th width="30px;">#</th>
                                             <th>Kode Kelas</th>
                                             <th>Nama Kelas</th>
                                             <th>Jurusan</th>
