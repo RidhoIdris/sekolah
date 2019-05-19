@@ -77,6 +77,14 @@
                     <div class="form-group col-12">
                         <textarea name="alamat" class="form-control" rows="5" id="alamat" placeholder="Alamat"></textarea>
                     </div>
+                    <div class="form-group col-12">
+                        <select name="kelas" class="form-control" id="kelas">
+                            <option value="">--- Pilih Kelas ---</option>
+                            @foreach ($kelas as $kls)
+                        <option value="{{ $kls->kode_kelas }}">{{ $kls->nama_kelas }} ( {{$kls->jurusan->nama_jurusan}} )</option>
+                            @endforeach
+                        </select>
+                    </div>
 
                 </div>
             </div>

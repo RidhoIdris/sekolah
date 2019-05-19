@@ -25,6 +25,13 @@ Route::group(['middleware' => ['auth']], function () {
     Route::put('/master-kelas/update/{kode_kelas}', 'KelasController@update')->name('kelas.update');
     Route::post('/master-kelas', 'KelasController@store')->name('kelas.store');
     Route::delete('/master-kelas/{kode_kelas}', 'KelasController@delete')->name('kelas.delete');
+
+    Route::get('/master-jurusan', 'JurusanController@index')->name('jurusan.index');
+    Route::get('/master-jurusan/show', 'JurusanController@show')->name('jurusan.show');
+    Route::get('/master-jurusan/edit/{id}', 'JurusanController@edit')->name('jurusan.edit');
+    Route::put('/master-jurusan/update/{id}', 'JurusanController@update')->name('jurusan.update');
+    Route::post('/master-jurusan', 'JurusanController@store')->name('jurusan.store');
+    Route::delete('/master-jurusan/{id}', 'JurusanController@delete')->name('jurusan.delete');
 });
 
 

@@ -24,6 +24,11 @@
                             <span class="pcoded-mtext">Master Kelas</span>
                         </a>
                     </li>
+                    <li class="{{ active('jurusan.index') }}">
+                        <a href="{{ route('jurusan.index') }}">
+                            <span class="pcoded-mtext">Master Jurusan</span>
+                        </a>
+                    </li>
                     <li class="{{ active('guru') }}">
                         <a href="menu-rtl.html">
                             <span class="pcoded-mtext">Master Guru</span>

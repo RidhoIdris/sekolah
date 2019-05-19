@@ -7,22 +7,20 @@
                 <div class="col-sm-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Master Kelas</h4>
+                            <h4>Master Jurusan</h4>
                             <div class="card-header-right">
                                 <ul class="list-unstyled card-option">
-                                    <li><button id="tambah" class="btn btn-success btn-sm">Tambah Kelas</button></li>
+                                    <li><button id="tambah" class="btn btn-success btn-sm">Tambah Jurusan</button></li>
                                 </ul>
                             </div>
                         </div>
                         <div class="card-block">
                             <div class="table-responsive">
-                                <table id="kelas" class="table table-hover" width="100%">
+                                <table id="jurusan" class="table table-hover" width="100%">
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Kode Kelas</th>
-                                            <th>Nama Kelas</th>
-                                            <th>Jurusan</th>
+                                            <th>Nama Jurusan</th>
                                             <th width="15px">Aksi</th>
                                         </tr>
                                     </thead>
@@ -35,19 +33,17 @@
         </div>
     </div>
 </div>
-@include('kelas.modal');
+@include('jurusan.modal');
 @endsection
 @section('script')
 <script type="text/javascript">
 $(document).ready(function() {
-    var getData = $('#kelas').DataTable({
+    var getData = $('#jurusan').DataTable({
         processing: true,
         serverSide: true,
-        ajax: "{{ route('kelas.show') }}",
+        ajax: "{{ route('jurusan.show') }}",
         columns: [
                     { data: 'DT_RowIndex', name: 'DT_RowIndex' },
-                    { data: 'kode_kelas'},
-                    { data: 'nama_kelas'},
                     { data: 'nama_jurusan'},
                     { data: 'action', name: 'action', orderable:false, searchable:false },
                 ],
@@ -61,27 +57,25 @@ $(document).ready(function() {
     });
 
     $('#tambah').click(function(){
-        $('input[name="kode_kelas"]').prop("readonly",false);
         $('form :input').val('');
-        $('.modal-header h4').text('Tambah Kelas');
+        $('.modal-header h4').text('Tambah Jurusan');
         $('button[type="submit"]').text('Save');
         $('#modal').modal('show');
     });
 
-    $('#formKelas').submit(function(e){
+    $('#formJurusan').submit(function(e){
         e.preventDefault();
         NProgress.start();
-        var kode_kelas = $('input[name="kode_kelas"]').val();
-        var jurusan_id = $('#jurusan_id :selected').val();
-        var nama_kelas = $('input[name="nama_kelas"]').val();
+        var id = $('input[name="id"]').val();
+        var nama_jurusan = $('input[name="nama_jurusan"]').val();
         var button = $('#submit').text();
         var url = '';
         var method = '';
         if(button == 'Save'){
-            url = 'master-kelas';
+            url = 'master-jurusan';
             method = "post";
         }else{
-            url = 'master-kelas/update/'+kode_kelas;
+            url = 'master-jurusan/update/'+id;
             method = "put";
         }
         $.ajax({
@@ -91,9 +85,7 @@ $(document).ready(function() {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             data : {
-                kode_kelas : kode_kelas,
-                nama_kelas: nama_kelas,
-                jurusan_id: jurusan_id,
+                nama_jurusan: nama_jurusan,
             },
             success:function(data){
                 $('#modal').modal('hide');
@@ -115,7 +107,7 @@ $(document).ready(function() {
     });
 
     $(document).on('click','#hapus',function(e){
-        var kode_kelas = $(this).attr('data-id');
+        var id = $(this).attr('data-id');
         Swal.fire({
             title: 'Are you sure?',
             text: "You won't be able to revert this!",
@@ -129,14 +121,14 @@ $(document).ready(function() {
                 NProgress.start();
                 $.ajax({
                     type : "DELETE",
-                    url  :  'master-kelas/'+kode_kelas,
+                    url  :  'master-jurusan/'+id,
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     success:function(){
                         Toast.fire({
                             type: 'success',
-                            title: "Kelas Berhasil Di Hapus",
+                            title: "Jurusan Berhasil Di Hapus",
                         });
                         getData.ajax.reload();
                         NProgress.done();
@@ -150,20 +142,18 @@ $(document).ready(function() {
     });
 
     $(document).on('click','#edit',function(){
-        $('.modal-header h4').text('Edit Kelas');
-        var kode_kelas = $(this).attr('data-id');
-        $('input[name="kode_kelas"]').prop("readonly",true);
+        $('.modal-header h4').text('Edit Jurusan');
+        var id = $(this).attr('data-id');
         $.ajax({
             type : "GET",
-            url  :  'master-kelas/edit/'+kode_kelas,
+            url  :  'master-jurusan/edit/'+id,
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },success:function(data){
                 $('form :input').val('');
                 $('button[type="submit"]').text('Edit');
-                $('input[name="kode_kelas"]').val(data.kode_kelas);
-                $('input[name="nama_kelas"]').val(data.nama_kelas);
-                $('#jurusan_id').val(data.jurusan_id);
+                $('input[name="id"]').val(data.id);
+                $('input[name="nama_jurusan"]').val(data.nama_jurusan);
                 $('#modal').modal('show');
             },error:function(data){
                 console.log(data);

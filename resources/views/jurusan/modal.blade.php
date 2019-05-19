@@ -9,23 +9,13 @@
         </div>
         <!-- Modal body -->
         <div class="modal-body">
-            <form method="POST" id="formKelas" action="{{ route('kelas.store')}}">
+            <form method="POST" id="formJurusan" action="{{ route('jurusan.store')}}">
         <fieldset>
                 @csrf
                 <div class="row">
-                    <div class="form-group col-6">
-                        <input type="text" autocomplete="off" class="form-control" placeholder="Kode Kelas" name="kode_kelas">
-                    </div>
-                    <div class="form-group col-6">
-                        <input type="text" autocomplete="off" class="form-control" placeholder="Nama Kelas" name="nama_kelas">
-                    </div>
                     <div class="form-group col-12">
-                        <select class="form-control" name="jurusan_id" id="jurusan_id">
-                            <option value="">--- Pilih Jurusan ---</option>
-                            @foreach ($jurusans as $jurusan)
-                                <option value="{{$jurusan->id}}">{{$jurusan->nama_jurusan}}</option>
-                            @endforeach
-                        </select>
+                            <input type="hidden" name="id">
+                            <input type="text" autocomplete="off" class="form-control" placeholder="Nama Jurusan" name="nama_jurusan">
                     </div>
                 </div>
             </div>

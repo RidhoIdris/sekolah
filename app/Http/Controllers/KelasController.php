@@ -4,17 +4,24 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Kelas;
+use App\Jurusan;
 
 class KelasController extends Controller
 {
     public function index(){
-        return view("kelas.index");
+        $jurusans = Jurusan::all();
+        return view("kelas.index",compact('jurusans'));
+
     }
 
     public function show(){
         $kelas = Kelas::orderBy('created_at','DESC')->get();
+
         return Datatables($kelas)
                 ->addIndexColumn()
+                ->addColumn('nama_jurusan',function($kelas){
+                    return $kelas->jurusan->nama_jurusan;
+                })
                 ->addColumn('action',function($kelas){
                     return '<button type="button" data-id="'.$kelas->kode_kelas.'" id="edit" class="btn btn-primary btn-sm">Edit</button><button type="button" data-id="'.$kelas->kode_kelas.'" id="hapus" class="btn btn-danger btn-sm">hapus</button>';
                 })->toJson();
@@ -25,6 +32,7 @@ class KelasController extends Controller
             [
                 'kode_kelas' => 'required|max:8|string|unique:kelas',
                 'nama_kelas' => 'required|max:50',
+                'jurusan_id' => 'required|max:50',
             ]
         );
 
@@ -35,6 +43,7 @@ class KelasController extends Controller
             Kelas::create([
                 'kode_kelas'=> request('kode_kelas'),
                 'nama_kelas'=> request('nama_kelas'),
+                'jurusan_id'=> request('jurusan_id'),
             ]);
             return response()->json(['message'=>'Kelas Berhasil Ditambahkan']);
         }
@@ -56,6 +65,7 @@ class KelasController extends Controller
         $validator = \Validator::make($request->all(),
             [
                 'nama_kelas' => 'required|max:50',
+                'jurusan_id' => 'required|max:50',
             ]
         );
 
@@ -65,6 +75,7 @@ class KelasController extends Controller
         }else{
             Kelas::where(['kode_kelas'=>$kode_kelas])->update([
                 'nama_kelas'=> request('nama_kelas'),
+                'jurusan_id'=> request('jurusan_id'),
             ]);
             return response()->json(['message'=>'Kelas Berhasil Diubah']);
         }

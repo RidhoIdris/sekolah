@@ -24,6 +24,8 @@
                                             <th>Name</th>
                                             <th>Jk</th>
                                             <th>Agama</th>
+                                            <th>Kelas</th>
+                                            <th>Jurusan</th>
                                             <th width="15px">Aksi</th>
                                         </tr>
                                     </thead>
@@ -51,6 +53,8 @@ $(document).ready(function() {
                     { data: 'nama_siswa'},
                     { data: 'jenis_kelamin'},
                     { data: 'agama'},
+                    { data: 'nama_kelas'},
+                    { data: 'nama_jurusan'},
                     { data: 'action', name: 'action', orderable:false, searchable:false },
                 ],
     });
@@ -141,6 +145,7 @@ $(document).ready(function() {
         var gol_darah = $('#gol_darah :selected').val();
         var provinsi = $('#provinsi :selected').val();
         var kecamatan = $('#kecamatan :selected').val();
+        var kelas = $('#kelas :selected').val();
         var kabupaten = $('#kabupaten :selected').val();
         var kelurahan = $('#kelurahan :selected').val();
         var alamat = $('#alamat').val();
@@ -168,6 +173,7 @@ $(document).ready(function() {
                 tanggal_lahir :  tgl_lahir,
                 jenis_kelamin :  jenis_kelamin,
                 agama : agama ,
+                kelas : kelas ,
                 gol_darah :  gol_darah,
                 provinsi :  provinsi,
                 kecamatan : kecamatan,
@@ -282,6 +288,7 @@ $(document).ready(function() {
                 $('input[name="tgl_lahir"]').val(data.tanggal_lahir);
                 $('#agama').val(data.agama);
                 $('#jenis_kelamin').val(data.jenis_kelamin);
+                $('#kelas').val(data.kode_kelas);
                 $('#gol_darah').val(data.gol_darah);
                 $('#alamat').val(data.alamat);
                 $('#modal').modal('show');

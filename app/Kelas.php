@@ -10,4 +10,13 @@ class Kelas extends Model
     protected $table = 'kelas';
     protected $primaryKey = 'kode_kelas';
     public $incrementing = false;
+
+    public function jurusan()
+    {
+        return $this->belongsTo('App\Jurusan');
+    }
+    public function siswa()
+    {
+        return $this->hasMany('App\MasterSiswa');
+    }
 }

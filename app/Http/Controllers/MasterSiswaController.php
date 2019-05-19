@@ -4,17 +4,26 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\MasterSiswa;
+use App\Kelas;
 
 class MasterSiswaController extends Controller
 {
     public function index(){
-        return view('siswa.index');
+
+        $kelas = Kelas::all();
+        return view('siswa.index',compact('kelas'));
     }
 
     public function show(){
         $siswa = MasterSiswa::orderBy('created_at','DESC')->get();
         return Datatables($siswa)
                 ->addIndexColumn()
+                ->addColumn('nama_kelas',function($siswa){
+                    return $siswa->kelas->nama_kelas;
+                })
+                ->addColumn('nama_jurusan',function($siswa){
+                    return $siswa->kelas->jurusan->nama_jurusan;
+                })
                 ->addColumn('action',function($siswa){
                     return '<button type="button" data-id="'.$siswa->nis.'" id="edit" class="btn btn-primary btn-sm">Edit</button><button type="button" data-id="'.$siswa->nis.'" id="hapus" class="btn btn-danger btn-sm">hapus</button>';
                 })->toJson();
@@ -35,6 +44,7 @@ class MasterSiswaController extends Controller
                 'kecamatan' => 'required|integer',
                 'kelurahan' => 'required|integer',
                 'alamat' => 'required|max:250',
+                'kelas' => 'required|max:250',
             ]
         );
 
@@ -55,6 +65,7 @@ class MasterSiswaController extends Controller
                 'kecamatan'=> request('kecamatan'),
                 'kelurahan'=> request('kelurahan'),
                 'alamat'=> request('alamat'),
+                'kode_kelas'=> request('kelas'),
             ]);
             return response()->json(['message'=>'Siswa Berhasil Ditambahkan']);
         }
@@ -74,6 +85,7 @@ class MasterSiswaController extends Controller
                 'kecamatan' => 'required|integer',
                 'kelurahan' => 'required|integer',
                 'alamat' => 'required|max:250',
+                'kelas' => 'required|max:250',
             ]
         );
 
@@ -93,6 +105,7 @@ class MasterSiswaController extends Controller
                 'kecamatan'=> request('kecamatan'),
                 'kelurahan'=> request('kelurahan'),
                 'alamat'=> request('alamat'),
+                'kode_kelas'=> request('kelas'),
             ]);
             return response()->json(['message'=>'Siswa Berhasil Diubah']);
         }
