@@ -19,6 +19,13 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/master-siswa', 'MasterSiswaController@store')->name('masterSiswa.store');
     Route::delete('/master-siswa/{nis}', 'MasterSiswaController@delete')->name('masterSiswa.delete');
 
+    Route::get('/master-guru', 'MasterGuruController@index')->name('masterGuru');
+    Route::get('/master-guru/show', 'MasterGuruController@show')->name('masterGuru.show');
+    Route::get('/master-guru/edit/{nis}', 'MasterGuruController@edit');
+    Route::put('/master-guru/update/{nis}', 'MasterGuruController@update');
+    Route::post('/master-guru', 'MasterGuruController@store')->name('masterGuru.store');
+    Route::delete('/master-guru/{nis}', 'MasterGuruController@delete')->name('masterGuru.delete');
+
     Route::get('/master-kelas', 'KelasController@index')->name('kelas.index');
     Route::get('/master-kelas/show', 'KelasController@show')->name('kelas.show');
     Route::get('/master-kelas/edit/{kode_kelas}', 'KelasController@edit')->name('kelas.edit');

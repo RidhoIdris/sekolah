@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMasterSiswasTable extends Migration
+class CreateMasterGurusTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateMasterSiswasTable extends Migration
      */
     public function up()
     {
-        Schema::create('master_siswa', function (Blueprint $table) {
-            $table->integer('nis')->primary();
-            $table->string('nama_siswa');
+        Schema::create('master_gurus', function (Blueprint $table) {
+            $table->integer('nip')->primary();
+            $table->string('nama_guru');
             $table->string('tempat_lahir');
             $table->date('tanggal_lahir');
             $table->string('jenis_kelamin');
@@ -37,6 +37,6 @@ class CreateMasterSiswasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('master_siswa');
+        Schema::dropIfExists('master_gurus');
     }
 }

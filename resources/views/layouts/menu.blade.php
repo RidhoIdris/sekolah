@@ -29,8 +29,8 @@
                             <span class="pcoded-mtext">Master Jurusan</span>
                         </a>
                     </li>
-                    <li class="{{ active('guru') }}">
-                        <a href="menu-rtl.html">
+                    <li class="{{ active('masterGuru') }}">
+                        <a href="{{ route('masterGuru') }}">
                             <span class="pcoded-mtext">Master Guru</span>
                         </a>
                     </li>
